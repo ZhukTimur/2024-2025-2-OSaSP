@@ -28,10 +28,10 @@ build mode: (_validate mode)
     @ {{ just-self }} '_build_{{ mode }}'
 
 _build_debug:
-    {{ cc }} {{ c-debug-flags }} src/*.c -o '{{ os-build-dir / project-name }}/debug'
+    {{ cc }} {{ c-debug-flags }} src/*.c --output '{{ os-build-dir / project-name }}/debug'
 
 _build_release:
-    {{ cc }} {{ c-release-flags }} src/*.c -o '{{ os-build-dir / project-name }}/release'
+    {{ cc }} {{ c-release-flags }} src/*.c --output '{{ os-build-dir / project-name }}/release'
 
 # execute project's binary (`mode` must be: `debug` or `release`)
 run mode *args: (build mode)
