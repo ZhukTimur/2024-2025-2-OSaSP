@@ -1,6 +1,6 @@
 # variables
 
-justfile-version := '1.0.0'
+justfile-version := '1.1.0'
 c-extra-flags := ''
 
 # configuration
@@ -52,3 +52,13 @@ _gdb project-name:
 # clean project's `build` directory
 clean:
     rm -rf '{{ os-build-dir }}'
+
+# run a memory error detector `valgrind`
+test mode *args: (build mode)
+    @ {{ just-self }} '_test_{{ mode }}' `basename {{ current-dir }}` {{ args }}
+
+_test_debug project-name *args:
+    valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes '{{ os-build-dir / project-name }}/debug' {{ args }}
+
+_test_release project-name *args:
+    valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes '{{ os-build-dir / project-name }}/release' {{ args }}

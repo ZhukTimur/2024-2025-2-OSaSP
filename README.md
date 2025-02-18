@@ -9,6 +9,8 @@ Resources:
 1. [Just Programmer's Manual](https://just.systems/man/en/).
 2. [`just` on GitHub](https://github.com/casey/just).
 
+You can list available recipes with `just --list`.
+
 ## makefile
 
 > [!NOTE]
