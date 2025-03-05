@@ -1,6 +1,6 @@
 # version
 
-version := '2.0.1'
+version := '2.1.0'
 
 # variables
 
@@ -8,9 +8,9 @@ cc := 'gcc'
 cd := 'gdb'
 ct := 'valgrind'
 c-standard := 'c23'
-c-common-flags := '-std=' + c-standard + ' -pedantic -W -Wall -Wextra -Werror'
-c-release-flags := c-common-flags + ' -O3 ' + c-extra-flags
-c-debug-flags := c-common-flags + ' -g -g' + cd + ' ' + c-extra-flags
+c-common-flags := '-std=' + c-standard + ' -pedantic -W -Wall -Wextra'
+c-release-flags := c-common-flags + ' -Werror -O2 ' + c-extra-flags
+c-debug-flags := c-common-flags + ' -O1 -g -g' + cd + ' ' + c-extra-flags
 c-extra-flags := ''
 
 # rules
