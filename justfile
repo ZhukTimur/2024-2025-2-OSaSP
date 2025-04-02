@@ -1,23 +1,29 @@
 # version
 
-version := '2.1.0'
+version := '2.2.0'
 
 # variables
+
+c-extra-flags := '-Wno-unused'
+
+# constants
 
 cc := 'gcc'
 cd := 'gdb'
 ct := 'valgrind'
 c-standard := 'c23'
-c-common-flags := '-std=' + c-standard + ' -pedantic -W -Wall -Wextra'
-c-release-flags := c-common-flags + ' -Werror -O2 ' + c-extra-flags
-c-debug-flags := c-common-flags + ' -O1 -g -g' + cd + ' ' + c-extra-flags
-c-extra-flags := ''
+c-common-flags := '-std=' + c-standard + ' -pedantic -W -Wall -Wextra ' + c-extra-flags
+c-release-flags := c-common-flags + ' -Werror -O2'
+c-debug-flags := c-common-flags + ' -O1 -g -g' + cd
 
 # rules
 
 os-build-dir := './build' / os()
 project-name := `basename $(pwd)`
 just-self := just_executable() + ' --justfile ' + justfile()
+
+_:
+    @ just --list
 
 _validate mode:
     @ if [ '{{ mode }}' != 'debug' ] && [ '{{ mode }}' != 'release' ]; then echo '`mode` must be: `debug` or `release`, not `{{ mode }}`'; exit 1; fi
